@@ -7,6 +7,7 @@ import Count from '@/components/Count'
 import ViewMap from '@/components/Map'
 import Todo from '@/components/Todo'
 import OperationRecord from '@/components/OperationRecord'
+import TodayNews from '@/components/TodayNews'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueGoogleMaps, {
@@ -57,6 +58,11 @@ export default new VueRouter({
       path: '/operationRecord',
       name: 'OperationRecord',
       component:OperationRecord
+    },
+    {
+      path: '/TodayNews',
+      name: 'TodayNews',
+      component:TodayNews
     },
   ]
 })
