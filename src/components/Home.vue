@@ -23,7 +23,7 @@
                   <v-icon>notifications</v-icon>
                   <v-toolbar-title class="white--text">今日瓦斯表異常資訊</v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-btn flat small color="white" href="/more2">MORE ></v-btn>
+                  <v-btn flat small color="white" href="/more3">MORE ></v-btn>
                 </v-toolbar>
                 
               </v-card>
