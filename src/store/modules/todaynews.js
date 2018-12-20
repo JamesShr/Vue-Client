@@ -17,22 +17,26 @@ const SERVER_URL = 'http://192.168.1.249/ORing_server/api/router.php'
 const state = {
   news:[
     {
+      index:"",
       date:"",
       sender:"",
       message:""
     }
   ],
   new:{
+    index:"",
     date:"",
     sender:"",
     message:""
-  }
+  },
+  status:'',
+  notice:0
 }
 
 
 const getters = {
   getTodayNews: state => state.news,
- 
+  getNoticeCount: state=> state.notice
 }
 
 // actions 也是以 Object 形式建構。
@@ -50,13 +54,51 @@ const actions = {
         .catch(function (error) {
           alert(error);
         })
-  }
+  },
+  actionReplyByLine({ commit },Data){
+    axios
+    .post(SERVER_URL,
+      {
+        action:"REPLY_TO_LINE_BOT",
+        Data
+      }
+    )
+    .then(function (response) {
+      commit(types.SEND_TO_LINE_BOT,response.data);
+    })
+    .catch(function (error) {
+      alert(error);
+    })
+  },
+  actionGetNoticeCount({ commit }){
+    axios
+    .post(SERVER_URL,
+      {
+        action:"GET_NOTICE_COUNT"
+      }
+    )
+    .then(function (response) {
+      commit(types.GET_NOTICE_COUNT,response.data);
+    })
+    .catch(function (error) {
+      alert(error);
+    })
+  },
 }
 
 // mutations
 const mutations = {
   [types.GET_NEWS] (state, newsData) {
     state.news = newsData;
+  },
+  [types.SEND_TO_LINE_BOT] (state, message) {
+    state.status = message;
+    state.notice = state.notice-1;
+    // alert(state.status);
+  },
+  [types.GET_NOTICE_COUNT] (state, data) {
+    state.notice = data[0].total;
+    // alert(state.status);
   }
 }
 

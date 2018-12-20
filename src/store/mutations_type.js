@@ -11,3 +11,5 @@ export const DELETE_TODO = 'todo/DELETE_TODO';
 export const UPDATE_TODO = 'todo/UPDATE_TODO';
 //news
 export const GET_NEWS = 'todaynews/GET_NEWS';
+export const SEND_TO_LINE_BOT = 'todaynews/SEND_TO_LINE_BOT';
+export const GET_NOTICE_COUNT = 'todaynews/GET_NOTICE_COUNT';

@@ -27,14 +27,18 @@
       <v-spacer></v-spacer>
       
         <v-btn flat icon>
+          <div v-if="Notice > 0">
           <v-badge color="red">
-              <span slot="badge">1</span>
+            
+              <span slot="badge">{{ Notice }}</span>
+            
               <v-icon
               color="white"        
               >
                 notifications_active
             </v-icon>
           </v-badge>
+          </div>
         </v-btn>
         &nbsp;&nbsp;&nbsp;&nbsp;
         James
@@ -94,7 +98,7 @@
 
 <script>
 import Drawer from '@/components/Drawer'
-
+import  {mapGetters, mapActions}  from 'vuex'
 export default {
   name: 'App',
   
@@ -109,8 +113,18 @@ export default {
     },
   components:{
     Drawer
-  }
-
+  },
+  computed: mapGetters({
+          Notice: 'getNoticeCount'
+    }),
+  methods:{
+    ...mapActions([
+          'actionGetNoticeCount'
+        ]),
+  },
+  beforeMount(){
+    this.actionGetNoticeCount()
+ }
 }
 </script>
 

@@ -11,8 +11,8 @@
             <td class="text-xs-center">{{ props.item.date }}</td>
             <td class="text-xs-center">{{ props.item.sender }}</td>
             <td class="text-xs-center">{{ props.item.message }}</td>
-             <v-btn  color="success" @click="check">
-                確認
+             <v-btn  color="success" @click="reply(props.item.index,props.item.date)">
+                回報確認
             </v-btn>
           </template>
       </v-data-table>
@@ -59,20 +59,20 @@ data () {
   }),
   methods: {
     ...mapActions([
-          'actionGetnews'
+          'actionGetnews',
+          'actionReplyByLine'
         ]),
-    check(){
-      console.log('check')
+    reply(index,date){
+      const data = {
+        index,
+        date
+      }
+      this.actionReplyByLine(data);
+      
     },
 
   },
-  socket:{
-    events:{
-      changed(msg){
-        console.log(msg);
-      }
-    }
-  },
+  
   beforeMount(){
     this.actionGetnews()
  }
